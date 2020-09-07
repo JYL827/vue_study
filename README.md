@@ -1,1 +1,1 @@
-# vuex_study
+# vue_study
