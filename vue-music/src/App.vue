@@ -5,8 +5,11 @@
       <span slot="content">我的音乐</span>
       <i class="iconfont icon-wode" slot="right-icon"></i>
     </v-header>
-    <!-- <router-view/> -->
-
+    <v-tab></v-tab>
+    
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
     <!-- menu -->
     <v-sidebar></v-sidebar>
   </div>
@@ -15,10 +18,12 @@
 <script>
   import header from '@/components/header'
   import sidebar from '@/components/sidebar'
+  import tab from '@/components/tab.vue'
   export default {
     components: {
       'v-header': header,
-      'v-sidebar': sidebar
+      'v-sidebar': sidebar,
+      'v-tab': tab
     }
   }
 </script>
