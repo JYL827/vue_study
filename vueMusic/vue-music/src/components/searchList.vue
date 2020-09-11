@@ -1,10 +1,10 @@
 <template>
-  <div class="search-list">
+  <div class="search-list" v-show="searches.length">
     <transition-group name="list" tag="ul">
       <li class="search-item" v-for="(item, index) in searches" :key="item">
         <span class="text">{{item}}</span>
         <span class="icon-box" @click.stop="deleteOne(index)">
-          <i class="iconfont icon-error"></i>
+          <i class="iconfont">&#xe651;</i>
         </span>
       </li>
     </transition-group>
@@ -13,15 +13,16 @@
 
 <script>
 export default {
-  data() {
-    return {
-     
-    }
-  },
   props: {
     searches: {
-      type: Array
+      type: Array,
+      default: () => {
+        return []
+      }
     }
+  },
+  data() {
+    return {}
   },
   methods: {
     deleteOne(index) {

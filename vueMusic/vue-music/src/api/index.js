@@ -7,7 +7,7 @@ const vue = new Vue()
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = 'http://localhost:3000'
 
-// 返回状态判断(响应拦截)
+// 返回状态判断（响应拦截）
 axios.interceptors.response.use(
   (res) => {
     if (res.data.code !== 200) {
@@ -22,14 +22,15 @@ axios.interceptors.response.use(
   }
 )
 
+
 export function fetchGet(url, param) {
   return new Promise((resolve, reject) => {
-    axios.get(url,{
-      param: param
+    axios.get(url, {
+      params: param
     })
     .then(
       response => {
-      resolve(response)
+        resolve(response)
       },
       err => {
         reject(err)
@@ -38,7 +39,7 @@ export function fetchGet(url, param) {
     .catch(error => {
       reject(error)
     })
-  })
+  }) 
 }
 
 

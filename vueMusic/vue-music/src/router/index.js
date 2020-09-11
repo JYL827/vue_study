@@ -11,10 +11,10 @@ Vue.use(VueRouter)
       name: 'search',
       component: search
     }
-]
+  ]
 
 const router = new VueRouter({
-  linkActiveClass: 'active', // router-link点击后的类名
+  linkActiveClass: 'active',
   mode: 'history',
   base: process.env.BASE_URL,
   routes

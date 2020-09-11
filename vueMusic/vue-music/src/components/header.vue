@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="header-icon" @click="setShowSidebar(true)">
+    <div class="header-icon" @click="menuShow">
       <slot name="left-icon"></slot>
     </div>
     <div class="header-cont">
@@ -13,22 +13,26 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+// import { mapActions } from 'vuex'
+
 export default {
   methods: {
-    ...mapActions(['setShowSidebar'])
+    // ...mapActions(['setShowSidebar']),
+    menuShow() {
+      this.$store.dispatch('setShowSidebar', true)
+    }
   }
 }
 </script>
 
-<style lang='stylus' scoped>
-@import '../assets/css/function.styl'
+<style lang="stylus" scoped>
+@import '../assets/css/function.styl';
 .header
   height px2rem(88)
   line-height px2rem(88)
   display flex
-  justify-content space-between
   align-items center
+  justify-content space-between
   text-align center
   font-size px2rem(30)
   &-icon

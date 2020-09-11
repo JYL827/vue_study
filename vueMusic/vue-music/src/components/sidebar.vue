@@ -3,51 +3,51 @@
     <div class="sidebar-con" :class="{showbar: showSidebar}">
       <div class="head">
         <div class="avatar">
-          <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1629668646,2513692460&fm=26&gp=0.jpg" alt="">
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599563412117&di=f678f6577a3d55ca14c62fa79a83a9be&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F02%2F25%2F5d7f627410590af90b103ddec12b0a73.jpg" alt="">
         </div>
-        <div class="name">余人</div>
+        <div class="name">蜗牛</div>
       </div>
       <div class="menu">
         <ul>
           <li @click="showToast">
             <router-link to="">
-              <i class="iconfont icon-wode"></i>
+              <i class="iconfont">&#xe911;</i>
               <span>个人中心</span>
             </router-link>
           </li>
           <li>
-            <router-link to="">
-              <i class="iconfont icon-wode"></i>
+            <router-link to="/user">
+              <i class="iconfont">&#xe911;</i>
               <span>个人中心</span>
             </router-link>
           </li>
         </ul>
       </div>
     </div>
-    <div class="sidebar_mask" v-show="showSidebar" @click="setShowSidebar(false)"></div>
+    <div v-show="showSidebar" class="sidebar_mask" @click="hidebar"></div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
-    return {
-
-    }
+    return {}
   },
   computed: {
     ...mapGetters(['showSidebar'])
   },
   methods: {
-    ...mapActions(['setShowSidebar']),
+    hidebar() {
+      this.$store.dispatch('setShowSidebar', false)
+    },
     showToast() {
-      this.$toast('该功能暂未开放...')
+      this.$toast('该功能暂未开放...', 'top')
     }
   }
 }
 </script>
-
 <style lang="stylus" scoped>
 @import "../assets/css/function"
 .sidebar 
@@ -64,9 +64,11 @@ export default {
     height 100%
     overflow auto
     transition all 0.3s ease
+
     &.showbar 
       transform translateX(px2rem(400px))
       opacity 1
+    
     .head 
       text-align center
       .avatar 
@@ -75,11 +77,13 @@ export default {
         background #f1f1f1
         border-radius 50%
         margin px2rem(60px) auto px2rem(15px)
-        overflow hidden
         img 
           width 100%
+      
       .name 
         font-size px2rem(32px)
+      
+    
     .menu 
       margin-top px2rem(30px)
       ul 

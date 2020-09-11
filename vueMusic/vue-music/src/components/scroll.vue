@@ -6,6 +6,7 @@
 
 <script>
 import BScroll from '@better-scroll/core'
+
 const DIRECTION_H = 'horizontal'
 const DIRECTION_V = 'vertical'
 
@@ -72,6 +73,11 @@ export default {
       default: DIRECTION_V
     }
   },
+  mounted() {
+    this.$nextTick(() => { // 一定会在模版编译完成之后执行
+      this._initScroll()
+    })
+  },
   methods: {
     _initScroll() {
       if (!this.$refs.wrapper) {
@@ -82,6 +88,7 @@ export default {
         probeType: this.probeType,
         eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V
       })
+
        // 是否派发滚动事件
       if (this.listenScroll) {
         this.scroll.on('scroll', (pos) => {
@@ -134,18 +141,13 @@ export default {
     scrollToElement() {
       // 代理better-scroll的scrollToElement方法
       this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
-    },
-  },
-  mounted() {
-    this.$nextTick(() => { // 一定会在模板编译之后执行
-      this._initScroll
-    })
+    }
   },
   watch: {
     data() {
       setTimeout(() => {
         this.refresh()
-      }, this.refreshDelay);
+      }, this.refreshDelay)
     }
   }
 }

@@ -1,14 +1,14 @@
 <template>
   <div class="search-box">
-    <i class="iconfont icon-search"></i>
-    <input class="box" ref="query" type="text" :placeholder="placeholder" v-model="query">
-    <i class="iconfont icon-error" v-show="query" @click="clear"></i>
-
+    <i class="iconfont">&#xe600;</i>
+    <input type="text" ref="query" class="box" :placeholder="placeholder" v-model="query">
+    <i class="iconfont icon-dismiss" v-show="query" @click="clear" >&#xe651;</i>
   </div>
 </template>
 
 <script>
 import { debounce } from '@/common/js/util'
+
 export default {
   props: {
     placeholder: {
@@ -16,9 +16,9 @@ export default {
       default: '搜索歌曲、歌手'
     }
   },
-  data () {
+  data() {
     return {
-      query: '',
+      query: ''
     }
   },
   methods: {
@@ -62,7 +62,7 @@ export default {
     color #ffffff
     font-size 14px
     outline 0
-  .icon-error
-    font-size 20px
+  .icon-dismiss
+    font-size 18px
     margin-right px2rem(10)
 </style>

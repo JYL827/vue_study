@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../assets/css/function.styl'
+@import '../assets/css/function.styl';
 .tab
   display flex
   height px2rem(88)
