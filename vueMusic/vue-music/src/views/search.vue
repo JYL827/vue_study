@@ -73,12 +73,14 @@ export default {
     ...mapActions([
       'deleteSearchHistory', 
       'clearSearchHistory', 
-      'saveSearchHistory'
+      'saveSearchHistory',
+      'selectPlaySong'
     ]),
-    saveSearch() {
+    saveSearch(song) {
       // 保存历史记录
       this.saveSearchHistory(this.query)
-      
+      // 播放音乐
+      this.selectPlaySong(song)
     }
   },
   watch: {
