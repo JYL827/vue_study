@@ -53,7 +53,7 @@ let findUser = function(username) {
 
 // 用户注册
 let insertUser = function(value) {
-  let _sql = `insert into users set username=?,userpwd=?,nickname;`
+  let _sql = `insert into users set username=?,userpwd=?,nickname=?;`
   return allServices.query(_sql, value) 
 }
 
