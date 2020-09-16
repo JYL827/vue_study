@@ -32,7 +32,7 @@ export default {
       // 发起接口请求
       this.$http({
         method: 'post',
-        url: this.$util.baseUrl+'/users/findNoteListenByType',
+        url: this.$util.baseUrl+'/users/findNoteListByType',
         data: {
           note_type,
           userId

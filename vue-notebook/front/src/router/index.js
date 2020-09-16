@@ -43,14 +43,21 @@ const routes = [
     name: 'noteList',
     component: () => import('@/views/noteList.vue'),
     meta: {
-      title: '笔记列表'
+      title: '日记列表'
     }
   },
   { path: '/noteDetail',
     name: 'noteDetail',
     component: () => import('@/views/noteDetail.vue'),
     meta: {
-      title: '笔记详情'
+      title: '日记详情'
+    }
+  },
+  { path: '/addNote',
+    name: 'addNote',
+    component: () => import('@/views/addNote.vue'),
+    meta: {
+      title: '写日记'
     }
   }
 ]

@@ -58,7 +58,7 @@ let insertUser = function(value) {
 }
 
 // 根据分类名查找对象的笔记列表
-let findNoteListenByType = function(note_type, userId) {
+let findNoteListByType = function(note_type, userId) {
   let _sql = `select * from note where note_type="${note_type}" and useId="${userId}"`
   return allServices.query(_sql)
 }
@@ -68,12 +68,19 @@ let findNoteDetailById = function(id) {
   return allServices.query(_sql)
 }
 
+//发表日记
+let insertNote = function(options) {
+  let _sql = `insert into note set c_time=?,m_time=?,note_content=?,head_img=?,title=?,note_type=?,useId=?,nickname=?;`
+  return allServices.query(_sql, options)
+}
+
 // 导出方法
 module.exports = {
   getAllUsers,
   userLogin,
   findUser,
   insertUser,
-  findNoteListenByType,
-  findNoteDetailById
+  findNoteListByType,
+  findNoteDetailById,
+  insertNote
 }
