@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import EtVerifyCode from 'et-verify-code'
+import EtVerifyCode from 'wn-verify-code'
 
 Vue.use(EtVerifyCode)
 
