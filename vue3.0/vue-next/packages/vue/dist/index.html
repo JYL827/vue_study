@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="./vue.global.js"></script>
+  <script>
+    // 获取鼠标的位置
+    function usePosition() {
+      let position = Vue.reactive({x: 0, y: 0})
+      function update(e) {
+        position.x = e.pageX;
+        position.y = e.pageY
+      }
+      Vue.onMounted(() => {
+        window.addEventListener('mousemove', update)
+      })
+      Vue.onUnmounted(() => {
+        window.removeEventListener('mousemove', update)
+      })
+      return Vue.toRefs(position)
+    }
+
+    // composition api 多个方法组合使用
+    const App = Vue.createApp({
+      setup() { // created,只会执行一次
+        let state = Vue.reactive({name: 'wn'})
+        let {x, y} = usePosition()
+        // console.log(state);
+        function change() {
+          // console.log(1111);
+          state.name = 'yl'
+        }
+        return { // 这个对象会作为渲染的上下文
+          state,
+          change,
+          x,
+          y
+        }
+      },
+      template: `<div @click="change">{{state.name}} x:{{x}} y:{{y}}</div>`
+    })
+    App.mount(container)
+  </script>
+</body>
+</html>
