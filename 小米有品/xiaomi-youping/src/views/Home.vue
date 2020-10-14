@@ -1,6 +1,9 @@
 <template>
   <div class="home-wrap">
     <div class="home-head">
+      <div class="head-title">
+        <img src="https://img.youpin.mi-img.com/static/weex_images/v1/m/navi_title_v6.png" alt="">
+      </div>
       <div class="head-search">
         <van-search
           v-model="value"
@@ -9,22 +12,22 @@
           placeholder="搜索"
         />
       </div>
-      <div class="head-swipe">
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item>
-            <img src="https://img.youpin.mi-img.com/test/d3f91a86f5dae9032a7cfa9c73dffc3b.jpeg" alt="">
-          </van-swipe-item>
-          <van-swipe-item>
-            <img src="https://img.youpin.mi-img.com/test/e42b6a05896fc024e9ede272d1a82a9a.jpeg" alt="">
-          </van-swipe-item>
-          <van-swipe-item>
-            <img src="https://img.youpin.mi-img.com/test/d1d83f3e4bce45c52db67123f6edf20a.jpeg" alt="">
-          </van-swipe-item>
-          <van-swipe-item>
-            <img src="https://img.youpin.mi-img.com/test/d3f91a86f5dae9032a7cfa9c73dffc3b.jpeg" alt="">
-          </van-swipe-item>
-        </van-swipe>
-      </div>
+    </div>
+    <div class="home-swipe">
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <van-swipe-item>
+          <img src="https://img.youpin.mi-img.com/test/d3f91a86f5dae9032a7cfa9c73dffc3b.jpeg" alt="">
+        </van-swipe-item>
+        <van-swipe-item>
+          <img src="https://img.youpin.mi-img.com/test/e42b6a05896fc024e9ede272d1a82a9a.jpeg" alt="">
+        </van-swipe-item>
+        <van-swipe-item>
+          <img src="https://img.youpin.mi-img.com/test/d1d83f3e4bce45c52db67123f6edf20a.jpeg" alt="">
+        </van-swipe-item>
+        <van-swipe-item>
+          <img src="https://img.youpin.mi-img.com/test/d3f91a86f5dae9032a7cfa9c73dffc3b.jpeg" alt="">
+        </van-swipe-item>
+      </van-swipe>
     </div>
   </div>
 </template>
@@ -43,8 +46,23 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .head-swipe
+.home-head
+  height 61px
+  box-sizing border-box
+  padding-top 3px
+  background-color rgb(132, 93, 50)
+  .head-title
+    width 40px
+    height 54px
+    padding 11px 0 0 6px
+    box-sizing border-box
+    float left
+    color #fff
     img
-      width 100%
-      height 160px
+      width 40px
+      height 31px
+.home-swipe
+  img
+    width 414px
+    height 177px
 </style>
