@@ -9,11 +9,11 @@
           v-model="value"
           shape="round"
           background="rgb(132, 93, 50)"
-          placeholder="搜索"
+          placeholder="搜一搜"
         />
       </div>
     </div>
-    <div class="home-swipe">
+    <div class="head-swipe">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item>
           <img src="https://img.youpin.mi-img.com/test/d3f91a86f5dae9032a7cfa9c73dffc3b.jpeg" alt="">
@@ -29,27 +29,33 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    <menu-icon></menu-icon>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import { Search, Swipe, SwipeItem } from 'vant';
+import Menuicon from '@/components/Menuicon'
 
 Vue.use(Search)
 Vue.use(Swipe)
 Vue.use(SwipeItem)
 
 export default {
-  
+  data() {
+    return {
+      value: ''
+    }
+  },
+  components: {
+    'menu-icon': Menuicon
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
 .home-head
-  height 61px
-  box-sizing border-box
-  padding-top 3px
   background-color rgb(132, 93, 50)
   .head-title
     width 40px
@@ -61,8 +67,8 @@ export default {
     img
       width 40px
       height 31px
-.home-swipe
+.head-swipe
   img
-    width 414px
-    height 177px
+    width 375px
+    height 160px
 </style>
