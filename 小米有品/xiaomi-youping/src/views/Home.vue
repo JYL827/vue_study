@@ -29,15 +29,35 @@
         </van-swipe-item>
       </van-swipe>
     </div>
-    <menu-icon></menu-icon>
+    <div class="home-menu">
+      <div class="menu-icon">
+        <img src="https://img.youpin.mi-img.com/jianyu/efb5e1c094c3e185d2add3e49bee0366.png" alt="">
+        <div>每日上新</div>
+      </div>
+      <div class="menu-icon">
+        <img src="https://img.youpin.mi-img.com/jianyu/24c86a799f3ea8ccfa675ff7563d50fb.png" alt="">
+        <div>小米众筹</div>
+      </div>
+      <div class="menu-icon">
+        <img src="https://img.youpin.mi-img.com/jianyu/912d7d210a6a5771f5946f1a8ac39014.png" alt="">
+        <div>有品秒杀</div>
+      </div>
+      <div class="menu-icon">
+        <img src="https://img.youpin.mi-img.com/jianyu/cac2205702a4acc7224b6f51308c0dd5.png" alt="">
+        <div>小米自营</div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import { Search, Swipe, SwipeItem } from 'vant';
-import Menuicon from '@/components/Menuicon'
+import { Tabbar, TabbarItem } from 'vant';
 
+Vue.use(Tabbar);
+Vue.use(TabbarItem);
 Vue.use(Search)
 Vue.use(Swipe)
 Vue.use(SwipeItem)
@@ -49,26 +69,44 @@ export default {
     }
   },
   components: {
-    'menu-icon': Menuicon
+
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.home-head
-  background-color rgb(132, 93, 50)
-  .head-title
-    width 40px
-    height 54px
-    padding 11px 0 0 6px
-    box-sizing border-box
-    float left
-    color #fff
-    img
-      width 40px
-      height 31px
-.head-swipe
-  img
+.home-wrap
+  background-color rgb(255, 255, 255)
+  .home-head
     width 375px
-    height 160px
+    background-color rgb(132, 93, 50)
+    .head-title
+      width 40px
+      height 54px
+      padding 11px 0 0 6px
+      box-sizing border-box
+      float left
+      color #fff
+      img
+        width 40px
+        height 31px
+  .head-swipe
+    img
+      width 375px
+      height 160px
+  .home-menu
+    font-size 12px
+    box-sizing: border-box;
+    display: flex;
+    justify-content space-between
+    text-align center
+    width: 375px;
+    padding-bottom: 1px;
+    padding-top: 14px;
+    .menu-icon
+      width 65px
+      height 72px
+      img
+        width 50px
+        height 50px
 </style>
