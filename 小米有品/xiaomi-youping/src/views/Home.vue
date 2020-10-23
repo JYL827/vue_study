@@ -47,7 +47,11 @@
         <div>小米自营</div>
       </div>
     </div>
-
+    <div class="home-goods">
+      <div class="goods-hot">
+        
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,7 +82,7 @@ export default {
 .home-wrap
   background-color rgb(255, 255, 255)
   .home-head
-    width 375px
+    width 100vw
     background-color rgb(132, 93, 50)
     .head-title
       width 40px
@@ -92,7 +96,7 @@ export default {
         height 31px
   .head-swipe
     img
-      width 375px
+      width 100vw
       height 160px
   .home-menu
     font-size 12px
@@ -100,7 +104,7 @@ export default {
     display: flex;
     justify-content space-between
     text-align center
-    width: 375px;
+    width: 100vw;
     padding-bottom: 1px;
     padding-top: 14px;
     .menu-icon
