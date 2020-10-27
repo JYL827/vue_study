@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/home.vue'
 import Classify from '@/views/classify.vue'
+import Self from '@/views/self.vue'
+import Cart from '@/views/cart.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,16 @@ const routes = [
     path: '/classify',
     name: 'classify',
     component: Classify
+  },
+  {
+    path: '/self',
+    name: 'self',
+    component: Self
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: Cart
   }
 ]
 
