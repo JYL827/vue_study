@@ -1,12 +1,11 @@
 <template>
   <div class="edit-wrap">
     <div class="address-head">
-      <img class="return" src="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_left_black.png" alt="">
+      <img class="return" @click="returnTo" src="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_left_black.png" alt="">
       <div class="address-title">新增地址</div>
     </div>
     <van-address-edit
     :area-list="areaList"
-    show-postal
     show-delete
     show-set-default
     show-search-result
@@ -56,6 +55,9 @@ export default {
     };
   },
   methods: {
+    returnTo() {
+      this.$router.push({path: './address'})
+    },
     onSave() {
       Toast('save');
     },

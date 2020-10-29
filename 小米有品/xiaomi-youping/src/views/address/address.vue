@@ -1,13 +1,13 @@
 <template>
   <div class="address-wrap">
     <div class="address-head">
-      <img class="return" src="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_left_black.png" alt="">
+      <img class="return" @click="returnTo" src="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_left_black.png" alt="">
       <div class="address-title">收货地址</div>
     </div>
     <div class="address-edit">
       <van-address-list
       v-model="chosenAddressId"
-      :list="list"
+      :list="addressList"
       default-tag-text="默认"
       @add="onAdd"
       @edit="onEdit"
@@ -20,36 +20,28 @@
 <script>
 import Vue from 'vue';
 import { AddressList } from 'vant';
+import { mapGetters } from 'vuex'
 
 Vue.use(AddressList);
 
 export default {
   data() {
     return {
-      chosenAddressId: '1',
-      list: [
-        {
-          id: '1',
-          name: '张三',
-          tel: '13000000000',
-          address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室',
-          isDefault: true,
-        },
-        {
-          id: '2',
-          name: '李四',
-          tel: '1310000000',
-          address: '浙江省杭州市拱墅区莫干山路 50 号',
-        },
-      ]
+      chosenAddressId: '1'
     };
   },
+  computed: {
+    ...mapGetters(['addressList'])
+  },
   methods: {
+    returnTo() {
+      this.$router.push({path: './self'})
+    },
     onAdd() {
-
+      this.$router.push({ path: './addressEdit' })
     },
     onEdit() {
-
+      this.$router.push({path: './addressEdit'})
     },
   },
 };
