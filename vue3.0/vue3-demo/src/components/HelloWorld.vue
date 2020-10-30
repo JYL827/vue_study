@@ -2,7 +2,6 @@
   <h1>{{state.count}} * 2 = {{double}}</h1>
   <button @click="add">+1</button>
   <h2>{{num}}</h2>
-  <hr/>
 </template>
 
 <script>
