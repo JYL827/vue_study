@@ -1,9 +1,6 @@
 <template>
   <div class="address-wrap">
-    <div class="address-head">
-      <img class="return" @click="returnTo" src="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_left_black.png" alt="">
-      <div class="address-title">收货地址</div>
-    </div>
+    <v-Navbar title="收货地址"></v-Navbar>
     <div class="address-edit">
       <van-address-list
       v-model="chosenAddressId"
@@ -21,8 +18,9 @@
 import Vue from 'vue';
 import { AddressList } from 'vant';
 import { mapGetters } from 'vuex'
+import NavBar from '@/components/NavBar.vue'
 
-Vue.use(AddressList);
+Vue.use(AddressList)
 
 export default {
   data() {
@@ -34,8 +32,8 @@ export default {
     ...mapGetters(['addressList'])
   },
   methods: {
-    returnTo() {
-      this.$router.push({path: './self'})
+    onClickLeft() {
+      this.$router.go(-1)
     },
     onAdd() {
       this.$router.push({ path: './addressEdit' })
@@ -44,17 +42,8 @@ export default {
       this.$router.push({path: './addressEdit'})
     },
   },
+  components: {
+    'v-Navbar': NavBar
+  }
 };
 </script>
-
-<style lang="stylus" scoped>
-.address-head
-  display flex
-  align-items center
-  .return
-    width 39px
-    height 48px
-  .address-title
-    flex 1
-    margin-left 115px
-</style>
