@@ -38,8 +38,8 @@ export default {
     onAdd() {
       this.$router.push({ path: './addressEdit' })
     },
-    onEdit() {
-      this.$router.push({path: './addressEdit'})
+    onEdit(item, index) {
+      this.$router.push({ path: './addressEdit?id=' + index })
     },
   },
   components: {
