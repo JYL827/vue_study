@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-header title="豆瓣电影评分" :leftArrow="false"></v-header>
-    <movie-section v-for="(item, index) in sectionData" :key="item.type" :section="item" :movie_key="movie_key[index]"></movie-section>
+    <!-- <movie-section :section=""></movie-section> -->
   </div>
 </template>
 
@@ -20,20 +20,16 @@ export default {
   },
   setup() {
     const sectionData = ref([])
-    const movie_key = [
-      {key: 'movieOnInfoList', params: {}, name: '影院热映'},
-      {key: 'comingList', params: {ci: 83, token: '', limit: 10}, name: '即将上映'}
-    ]
-    const promiseArr = movie_key.map(function(item) {
-      return getMovieSection(item.key, item.params)
+    const movie_key = ['movieOnInfoList']
+    const promiseArr = movie_key.map(function(key) {
+      return getMovieSection(key)
     })
     Promise.all(promiseArr).then(function(res) {
       sectionData.value = res
       console.log(res);
     })
     return {
-      sectionData,
-      movie_key
+      sectionData
     }
   }
 }
