@@ -1,6 +1,6 @@
 <template>
   <div class="edit-wrap">
-    <v-Navbar title="编辑地址"></v-Navbar>
+    <v-Navbar :title="title"></v-Navbar>
     <van-address-edit
       :area-list="areaList"
       show-delete
@@ -29,6 +29,7 @@ export default {
     return {
       areaList: { ...Area },
       addressInfo: {},
+      title: '新增地址'
     }
   },
   methods: {
@@ -60,11 +61,29 @@ export default {
   mounted() {
     let i = this.$route.query.id
     this.addressInfo = this.addressList[i]
+    if(i) this.title = '编辑地址'
   }
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
+.van-address-item .van-radio__icon--round
+  display none
+.van-address-item__name
+  color #333333
+.van-address-item__address
+  color #666666
+  font-size 12px
+.van-switch--on
+  background-color red
+.van-button--normal
+  background-color #fff
+  color red
+  border-color rgb(132, 93, 50)
+.van-button--danger
+  background-color rgb(132, 93, 50)
+  border none
+  color #fff
 .empty {
   width: 100vw;
   height: 50px;

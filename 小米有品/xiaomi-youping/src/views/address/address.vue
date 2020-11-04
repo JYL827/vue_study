@@ -47,3 +47,12 @@ export default {
   }
 };
 </script>
+<style lang="stylus" scoped>
+.van-button
+  height 44px
+  border-radius 5px
+  background #fff
+  color rgb(132, 93, 50)
+  border 1px solid rgb(132, 93, 50)
+  margin-bottom 15px
+</style>
