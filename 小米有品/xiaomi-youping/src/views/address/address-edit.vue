@@ -9,7 +9,7 @@
       :area-columns-placeholder="['请选择', '请选择', '请选择']"
       @save="onSave"
       @delete="onDelete"
-      @change-detail="onChangeDetail"
+      @change-default="onChangeDefault"
     />
     <div class="empty"></div>
   </div>
@@ -17,11 +17,11 @@
 
 <script>
 import Vue from "vue";
+import { Toast } from 'vant'
 import { AddressEdit } from "vant";
-import { Toast } from "vant";
 import NavBar from "@/components/NavBar.vue";
 import Area from "../../assets/area/area";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 Vue.use(AddressEdit);
 
 export default {
@@ -33,32 +33,35 @@ export default {
     }
   },
   methods: {
-    onSave() {
-      Toast("save");
+    // 引用vuex中的方法
+    ...mapActions(['deleteAddress','saveAddress', 'changeDefault']),
+    onSave(content) {
+      this.saveAddress(content)
+      Toast('保存更改成功')
+      console.log(content);
+      this.$router.go(-1)
     },
     onDelete() {
-      Toast("delete");
+      let i = this.$route.query.id
+      this.deleteAddress(i)
+      this.$router.go(-1)
     },
-    onChangeDetail(val) {
-      if (val) {
-        this.searchResult = [
-          {
-            name: "黄龙万科中心",
-            address: "杭州市西湖区",
-          },
-        ];
-      } else {
-        this.searchResult = [];
-      }
-    },
+    onChangeDefault(value) {
+      // console.log(value);
+      let i = this.$route.query.id
+      // mutation传参数时要以key: value的形式传值
+      this.changeDefault({index: i, cur: value})
+    }
   },
   computed: {
     ...mapGetters(["addressList"]),
+    
   },
   components: {
     "v-Navbar": NavBar,
   },
   mounted() {
+    // 接收address传的id标识，判断点击的是哪个地址
     let i = this.$route.query.id
     this.addressInfo = this.addressList[i]
     if(i) this.title = '编辑地址'

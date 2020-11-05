@@ -44,6 +44,9 @@ export default {
   },
   components: {
     'v-Navbar': NavBar
+  },
+  mounted() {
+    console.log(this.addressList);
   }
 };
 </script>

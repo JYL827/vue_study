@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- 四个tabBar -->
     <div class="tabBar">
       <van-tabbar v-model="active" active-color="#a2876f" route>
       <van-tabbar-item v-for="(item, index) in tabbarList" :key="index" :to="item.path">
