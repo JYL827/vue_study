@@ -1,7 +1,7 @@
 const state = {
   list: [
     {
-      id: '1',
+      id: '0',
       name: '张三',
       tel: '13000000000',
       address: '浙江省杭州市西湖区文三路138号东方通信大厦7楼501室',
@@ -14,7 +14,7 @@ const state = {
       isDefault: true
     },
     {
-      id: '2',
+      id: '1',
       name: '李四',
       tel: '13100000000',
       address: '浙江省杭州市拱墅区莫干山路50号',
@@ -37,26 +37,27 @@ const mutations = {
   deleteInfo(state, index) {
     state.list.splice(index, 1)
   },
-  saveInfo(state, addressInfo) {
+  saveInfo(state, { addressInfo, index }) {
     // 由于vant编辑地址组件中只有addressDetail,所以手动拼接address
     addressInfo.address = addressInfo.province + addressInfo.city + addressInfo.county + addressInfo.addressDetail
-    if(addressInfo.id) {
-      for(let item of state.list) {
-        if(addressInfo.isDefault) {
-          item.isDefault = false
+    if(index) {
+      if(addressInfo.isDefault) {
+        for(let item of state.list) {
+          if(item.isDefault) {
+            item.isDefault = false
+          }
         }
-        return
+        state.list[index].isDefault = true
+      }else if(!addressInfo.isDefault) {
+        state.list[index].isDefault = false
       }
-      return
+    } 
+    else if(addressInfo.isDefault) {
+      for(let item of state.list) {
+        item.isDefault = false
+      }
+      state.list.push(addressInfo)
     }
-    // 设置addressInfo的id
-    
-
-    state.list.push(addressInfo)
-  },
-  // 设置默认地址
-  setDefault(state, {index, cur}) {
-    state.list[index].isDefault = cur
   }
 }
 
@@ -66,9 +67,6 @@ const actions = {
   },
   saveAddress({ commit }, address) {
     commit('saveInfo', address)
-  },
-  changeDefault({ commit }, {index, cur}) {
-    commit('setDefault', {index, cur})
   }
 }
 

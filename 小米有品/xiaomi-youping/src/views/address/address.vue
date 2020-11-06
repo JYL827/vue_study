@@ -10,6 +10,10 @@
       @edit="onEdit"
       add-button-text="+ 添加地址"
       />
+      <div class="tip" v-if="addressList.length <= 0">
+        <img src="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/no_result/no_result_address.png" alt="">
+        <p>您还没有收货地址哦，请点击下方+ 新建</p>
+      </div>
     </div>
   </div>
 </template>
@@ -58,4 +62,13 @@ export default {
   color rgb(132, 93, 50)
   border 1px solid rgb(132, 93, 50)
   margin-bottom 15px
+.tip
+  width 100vw
+  font-size 14px
+  position fixed
+  top 30vh
+  text-align center
+  img 
+    width 100px
+    height 100px
 </style>

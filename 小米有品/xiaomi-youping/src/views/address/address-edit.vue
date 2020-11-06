@@ -9,7 +9,6 @@
       :area-columns-placeholder="['请选择', '请选择', '请选择']"
       @save="onSave"
       @delete="onDelete"
-      @change-default="onChangeDefault"
     />
     <div class="empty"></div>
   </div>
@@ -29,28 +28,24 @@ export default {
     return {
       areaList: { ...Area },
       addressInfo: {},
-      title: '新增地址'
+      title: '新增地址',
+      // 接收address传的id标识，判断点击的是哪个地址
+      // 因为要多次复用，所以存给数据源
+      index: this.$route.query.id
     }
   },
   methods: {
     // 引用vuex中的方法
-    ...mapActions(['deleteAddress','saveAddress', 'changeDefault']),
+    ...mapActions(['deleteAddress','saveAddress']),
     onSave(content) {
-      this.saveAddress(content)
+      this.saveAddress({addressInfo: content, index: this.index})
       Toast('保存更改成功')
       console.log(content);
       this.$router.go(-1)
     },
     onDelete() {
-      let i = this.$route.query.id
-      this.deleteAddress(i)
+      this.deleteAddress(this.index)
       this.$router.go(-1)
-    },
-    onChangeDefault(value) {
-      // console.log(value);
-      let i = this.$route.query.id
-      // mutation传参数时要以key: value的形式传值
-      this.changeDefault({index: i, cur: value})
     }
   },
   computed: {
@@ -61,10 +56,8 @@ export default {
     "v-Navbar": NavBar,
   },
   mounted() {
-    // 接收address传的id标识，判断点击的是哪个地址
-    let i = this.$route.query.id
-    this.addressInfo = this.addressList[i]
-    if(i) this.title = '编辑地址'
+    this.addressInfo = this.addressList[this.index]
+    if(this.index) this.title = '编辑地址'
   }
 };
 </script>
