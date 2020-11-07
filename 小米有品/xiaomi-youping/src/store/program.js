@@ -1,5 +1,5 @@
 const state = {
-  list: [
+  addressList: [
     {
       id: '0',
       name: '张三',
@@ -26,38 +26,53 @@ const state = {
       postCode: '342300',
       isDefault: false
     }
-  ]
+  ],
+  hasLogin: true,
+  userInfo: {
+    nickName: '梦间行'
+  }
 }
 
 const getters = {
-  addressList: state => state.list
+  addressList: state => state.addressList,
+  hasLogin: state => state.hasLogin,
+  nickName: state =>state.userInfo.nickName
 }
 
 const mutations = {
+  // 删除地址
   deleteInfo(state, index) {
-    state.list.splice(index, 1)
+    state.addressList.splice(index, 1)
   },
+  // 保存地址
   saveInfo(state, { addressInfo, index }) {
     // 由于vant编辑地址组件中只有addressDetail,所以手动拼接address
     addressInfo.address = addressInfo.province + addressInfo.city + addressInfo.county + addressInfo.addressDetail
     if(index) {
       if(addressInfo.isDefault) {
-        for(let item of state.list) {
+        for(let item of state.addressList) {
           if(item.isDefault) {
             item.isDefault = false
           }
         }
-        state.list[index].isDefault = true
-      }else if(!addressInfo.isDefault) {
-        state.list[index].isDefault = false
+        state.addressList[index].isDefault = true
+      } else {
+        state.addressList[index].isDefault = false
       }
     } 
     else if(addressInfo.isDefault) {
-      for(let item of state.list) {
+      for(let item of state.addressList) {
         item.isDefault = false
       }
-      state.list.push(addressInfo)
+      state.addressList.push(addressInfo)
+    } else {
+      state.addressList.push(addressInfo)
     }
+  },
+  // 退出登录
+  exitLoginInfo(state) {
+    state.hasLogin = false
+    state.userInfo.nickName = '请登录'
   }
 }
 
@@ -67,6 +82,9 @@ const actions = {
   },
   saveAddress({ commit }, address) {
     commit('saveInfo', address)
+  },
+  exitLogin({ commit }) {
+    commit('exitLoginInfo')
   }
 }
 

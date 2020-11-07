@@ -10,10 +10,7 @@
       @edit="onEdit"
       add-button-text="+ 添加地址"
       />
-      <div class="tip" v-if="addressList.length <= 0">
-        <img src="https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/no_result/no_result_address.png" alt="">
-        <p>您还没有收货地址哦，请点击下方+ 新建</p>
-      </div>
+      <v-empty :emptyTip="emptyTip" v-if="addressList.length <= 0"></v-empty>
     </div>
   </div>
 </template>
@@ -23,13 +20,20 @@ import Vue from 'vue';
 import { AddressList } from 'vant';
 import { mapGetters } from 'vuex'
 import NavBar from '@/components/NavBar.vue'
+import Empty from '@/components/empty.vue'
 
 Vue.use(AddressList)
 
 export default {
   data() {
     return {
-      chosenAddressId: '1'
+      chosenAddressId: '1',
+      emptyTip: {
+        imgPath: "https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/no_result/no_result_address.png",
+        title: '您还没有收货地址哦，请点击下方+ 新建',
+        isShowBtn: false,
+        btnName: ''
+      }
     };
   },
   computed: {
@@ -47,10 +51,8 @@ export default {
     },
   },
   components: {
-    'v-Navbar': NavBar
-  },
-  mounted() {
-    console.log(this.addressList);
+    'v-Navbar': NavBar,
+    'v-empty': Empty
   }
 };
 </script>
@@ -62,13 +64,4 @@ export default {
   color rgb(132, 93, 50)
   border 1px solid rgb(132, 93, 50)
   margin-bottom 15px
-.tip
-  width 100vw
-  font-size 14px
-  position fixed
-  top 30vh
-  text-align center
-  img 
-    width 100px
-    height 100px
 </style>

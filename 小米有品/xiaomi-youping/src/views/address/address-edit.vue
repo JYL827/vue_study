@@ -10,7 +10,7 @@
       @save="onSave"
       @delete="onDelete"
     />
-    <div class="empty"></div>
+  <v-blank></v-blank>
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import Vue from "vue";
 import { Toast } from 'vant'
 import { AddressEdit } from "vant";
 import NavBar from "@/components/NavBar.vue";
+import Blank from "@/components/blank.vue";
 import Area from "../../assets/area/area";
 import { mapActions, mapGetters } from "vuex";
 Vue.use(AddressEdit);
@@ -36,11 +37,11 @@ export default {
   },
   methods: {
     // 引用vuex中的方法
-    ...mapActions(['deleteAddress','saveAddress']),
+    ...mapActions(['deleteAddress', 'saveAddress']),
     onSave(content) {
       this.saveAddress({addressInfo: content, index: this.index})
       Toast('保存更改成功')
-      console.log(content);
+      // console.log(content);
       this.$router.go(-1)
     },
     onDelete() {
@@ -49,11 +50,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["addressList"]),
-    
+    ...mapGetters(["addressList"])
   },
   components: {
     "v-Navbar": NavBar,
+    "v-blank": Blank,
   },
   mounted() {
     this.addressInfo = this.addressList[this.index]
@@ -80,12 +81,4 @@ export default {
   background-color rgb(132, 93, 50)
   border none
   color #fff
-.empty {
-  width: 100vw;
-  height: 50px;
-  background-color: #fff;
-  z-index: 999;
-  position: fixed;
-  bottom: 0;
-}
 </style>

@@ -1,16 +1,14 @@
 <template>
   <div id="app">
     <!-- 四个tabBar -->
-    <div class="tabBar">
-      <van-tabbar v-model="active" active-color="#a2876f" route>
-      <van-tabbar-item v-for="(item, index) in tabbarList" :key="index" :to="item.path">
-          <template slot-scope="props">
-            <img slot="icon" :src="props.active ? item.active : item.normal" />
-            <div class="title">{{item.title}}</div>
-          </template>
-        </van-tabbar-item>
-      </van-tabbar>
-    </div>
+    <van-tabbar v-model="active" active-color="#a2876f" route>
+    <van-tabbar-item v-for="(item, index) in tabbarList" :key="index" :to="item.path">
+        <template slot-scope="props">
+          <img slot="icon" :src="props.active ? item.active : item.normal" />
+          <div class="title">{{item.title}}</div>
+        </template>
+      </van-tabbar-item>
+    </van-tabbar>
     <router-view/>
   </div>
 </template>
@@ -63,8 +61,8 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-  .tabBar
-    text-align center
+  .van-tabbar-item
+    border-top 2px solid #f1f1f1
     img
       width 24px
       height 24px

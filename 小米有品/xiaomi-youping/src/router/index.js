@@ -6,6 +6,7 @@ import Self from '@/views/self.vue'
 import Cart from '@/views/cart.vue'
 import Address from '@/views/address/address.vue'
 import AddressEdit from '@/views/address/address-edit.vue'
+import Collection from '@/views/collection.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: Cart
+  },
+  {
+    path: '/collection',
+    name: 'collection',
+    component: Collection
   }
 ]
 
