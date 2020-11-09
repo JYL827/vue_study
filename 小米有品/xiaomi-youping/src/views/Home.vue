@@ -52,6 +52,7 @@
         
       </div>
     </div>
+    <v-tabBar></v-tabBar>
   </div>
 </template>
 
@@ -59,6 +60,7 @@
 import Vue from 'vue'
 import { Search, Swipe, SwipeItem } from 'vant';
 import { Tabbar, TabbarItem } from 'vant';
+import TabBar from '@/components/tabBar.vue'
 
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
@@ -73,7 +75,7 @@ export default {
     }
   },
   components: {
-
+    'v-tabBar': TabBar
   }
 }
 </script>

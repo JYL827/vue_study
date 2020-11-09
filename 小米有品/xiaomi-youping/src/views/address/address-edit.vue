@@ -10,7 +10,6 @@
       @save="onSave"
       @delete="onDelete"
     />
-  <v-blank></v-blank>
   </div>
 </template>
 
@@ -19,7 +18,6 @@ import Vue from "vue";
 import { Toast } from 'vant'
 import { AddressEdit } from "vant";
 import NavBar from "@/components/NavBar.vue";
-import Blank from "@/components/blank.vue";
 import Area from "../../assets/area/area";
 import { mapActions, mapGetters } from "vuex";
 Vue.use(AddressEdit);
@@ -53,8 +51,7 @@ export default {
     ...mapGetters(["addressList"])
   },
   components: {
-    "v-Navbar": NavBar,
-    "v-blank": Blank,
+    "v-Navbar": NavBar
   },
   mounted() {
     this.addressInfo = this.addressList[this.index]

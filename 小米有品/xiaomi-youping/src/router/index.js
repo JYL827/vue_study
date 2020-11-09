@@ -7,6 +7,8 @@ import Cart from '@/views/cart.vue'
 import Address from '@/views/address/address.vue'
 import AddressEdit from '@/views/address/address-edit.vue'
 import Collection from '@/views/collection.vue'
+import Login from '@/views/login.vue'
+import Register from '@/views/register.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,16 @@ const routes = [
     path: '/collection',
     name: 'collection',
     component: Collection
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register
   }
 ]
 

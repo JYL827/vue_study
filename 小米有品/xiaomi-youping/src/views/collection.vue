@@ -4,13 +4,12 @@
       <img src="https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_left_black.png" @click="goBack">
       <p>我的收藏</p>
     </div>
+    <!-- 收藏为空时 -->
     <v-empty :emptyTip="emptyTip"></v-empty>
-    <v-blank></v-blank>
   </div>
 </template>
 
 <script>
-import Blank from "@/components/blank.vue";
 import Empty from '@/components/empty.vue'
 export default {
   data() {
@@ -19,13 +18,13 @@ export default {
         imgPath: "https://m.xiaomiyoupin.com/youpin/static/m/res/images/no_result/no_result_favor.png",
         title: '目前没有收藏商品哦~',
         isShowBtn: true,
-        btnName: '去首页逛逛'
+        btnName: '去首页逛逛',
+        url: '/'
       }
     }
   },
   components: {
-    'v-empty': Empty,
-    "v-blank": Blank
+    'v-empty': Empty
   },
   methods: {
     goBack() {

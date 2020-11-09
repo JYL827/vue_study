@@ -1,12 +1,16 @@
 <template>
   <div class="cart-wrap">
     <div class="cart-header">购物车</div>
+    <!-- 购物车为空时 -->
     <v-empty :emptyTip="emptyTip"></v-empty>
+    <v-tabBar></v-tabBar>
   </div>
 </template>
 
 <script>
 import Empty from '@/components/empty.vue'
+import TabBar from '@/components/tabBar.vue'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -14,12 +18,29 @@ export default {
         imgPath: "https://trade.m.xiaomiyoupin.com/youpin/static/m/res/images/no_result/no_result_cart.png",
         title: '购物车还没有商品哦~',
         isShowBtn: true,
-        btnName: '去逛逛'
+        btnName: '去逛逛',
+        url: '/'
       }
     }
   },
+  computed: {
+    ...mapGetters(['hasLogin'])
+  },
   components: {
-    'v-empty': Empty
+    'v-empty': Empty,
+    'v-tabBar': TabBar
+  },
+  methods: {
+    notLogin() {
+      if(!this.hasLogin) {
+        this.emptyTip.title = '登录后才能看到商品哦~'
+        this.emptyTip.btnName = '去登录'
+        this.emptyTip.url = '/login'
+      }
+    }
+  },
+  mounted() {
+    this.notLogin()
   }
 }
 </script>

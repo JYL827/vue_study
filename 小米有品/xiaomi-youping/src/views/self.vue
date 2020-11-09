@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="self-wrap">
-      <div class="self-head">
+      <div class="self-head" @click="toLogin">
         <div class="head-pic">
           <img src="https://img.youpin.mi-img.com/shopcenter/415b0fd8150f58ee2b85caa2ee9cef8f.png" alt="">
         </div>
@@ -43,6 +43,7 @@
       </van-cell-group>
       <button class="exit" v-if="hasLogin" @click="exit">退出</button>
     </div>
+    <v-tabBar></v-tabBar>
   </div>
 </template>
 
@@ -50,6 +51,7 @@
 import Vue from "vue";
 import { Cell, CellGroup } from "vant";
 import { mapActions, mapGetters } from 'vuex';
+import TabBar from '@/components/tabBar.vue'
 
 Vue.use(Cell);
 Vue.use(CellGroup);
@@ -62,7 +64,15 @@ export default {
     exit() {
       this.exitLogin()
       this.$router.push('/')
+    },
+    toLogin() {
+      if(!this.hasLogin) {
+        this.$router.push('/login')
+      }
     }
+  },
+  components: {
+    'v-tabBar': TabBar
   }
 }
 </script>

@@ -16,14 +16,15 @@ export default {
           imgPath: '',
           title: '',
           isShowBtn: true,
-          btnName: ''
+          btnName: '',
+          url: ''
         }
       }
     }
   },
   methods: {
     goShopping() {
-      this.$router.push('/')
+      this.$router.push(this.emptyTip.url)
     }
   }
 }
