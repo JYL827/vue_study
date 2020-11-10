@@ -36,7 +36,7 @@ export default {
   position relative
   height 100vh
   text-align center
-  background-image url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604940998325&di=9c4a8fe71c8a41ce8a063fb392a0de70&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201405%2F08%2F20140508212719_V8RLN.thumb.700_0.jpeg')
+  background-image url('../assets/register.jpg')
   background-size 100% 100%
   .head-title
     padding-top 40px

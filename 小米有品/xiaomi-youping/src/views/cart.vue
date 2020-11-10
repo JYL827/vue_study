@@ -31,6 +31,7 @@ export default {
     'v-tabBar': TabBar
   },
   methods: {
+    // 如果用户没有登录，则不展示购物车详情
     notLogin() {
       if(!this.hasLogin) {
         this.emptyTip.title = '登录后才能看到商品哦~'

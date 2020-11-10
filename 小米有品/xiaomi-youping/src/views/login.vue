@@ -35,7 +35,7 @@ export default {
     text-align center
     font-size 13px
     height 100vh
-    background-image url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604933883874&di=2b84b7a3835d13ff19a3f3b8388a3719&imgtype=0&src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201406%2F18%2F20140618191202_MnFQL.thumb.400_0.jpeg')
+    background-image url('../assets/login.jpg')
     background-size 100% 100%
     color #666666
     .help
@@ -72,6 +72,7 @@ export default {
       color #fff
     .next
       width 140px
+      line-height 18px
       display flex
       margin 10px auto
       justify-content space-around

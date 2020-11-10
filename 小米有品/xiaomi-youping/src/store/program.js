@@ -30,13 +30,20 @@ const state = {
   hasLogin: true,
   userInfo: {
     nickName: '梦间行'
-  }
+  },
+  hotTitle: [
+    '女包',
+    '有品',
+    '耳机',
+    '香水'
+  ]
 }
 
 const getters = {
   addressList: state => state.addressList,
   hasLogin: state => state.hasLogin,
-  nickName: state =>state.userInfo.nickName
+  nickName: state => state.userInfo.nickName,
+  hotWords: state => state.hotTitle
 }
 
 const mutations = {
