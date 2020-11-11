@@ -4,28 +4,53 @@
       注册账号
     </div>
     <div class="inputInfo">
-      <!-- 允许输入正整数，调起纯数字键盘 -->
-      <van-field label-width="50px" v-model="username" type="digit" label="用户名" required />
-      <!-- 输入密码 -->
-      <van-field label-width="50px" v-model="password" type="password" label="密码" required />
-      <van-field label-width="50px" v-model="nickname" label="昵称" required />
+      <van-form @submit="onSubmit">
+        <van-field 
+          label-width="50px" 
+          v-model="username" 
+          type="digit" 
+          label="账号" 
+          :rules="[{ pattern, message: '请创建账号' }]"
+        />
+        <!-- 输入密码 -->
+        <van-field 
+          label-width="50px" 
+          v-model="password" 
+          type="password" 
+          label="密码" 
+          :rules="[{ required: true, message: '请填写密码' }]" 
+        />
+        <van-field 
+          label-width="50px" 
+          v-model="nickname" 
+          label="昵称" 
+          :rules="[{ required: true, message: '请填写昵称' }]" 
+        />
+        <van-button type="info" native-type="submit" color="#ddbcb1" class="register">注册</van-button>
+      </van-form>
     </div>
-    <van-button type="primary" color="#ddbcb1" url="/login" class="register">注册</van-button>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import { Field, Button } from 'vant';
+import { Field, Button, Form } from 'vant';
 
 Vue.use(Field);
 Vue.use(Button);
+Vue.use(Form)
 export default {
   data() {
     return {
       username: '',
       password: '',
-      nickname: ''
+      nickname: '',
+      pattern: ''
+    }
+  },
+  methods: {
+    onSubmit(values) {
+      console.log('submit', values);
     }
   }
 }
@@ -49,10 +74,7 @@ export default {
     left 50%
     transform translateX(-50%)
   .register
-    position absolute
-    top 54%
+    margin 30px auto
     width 80px
     height 35px
-    left 50%
-    transform translateX(-50%)
 </style>

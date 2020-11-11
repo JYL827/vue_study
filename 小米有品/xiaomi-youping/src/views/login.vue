@@ -6,8 +6,8 @@
     <div class="head-title">
       欢迎登录小米有品
     </div>
-    <input type="text" class="account" placeholder="账号">
-    <input type="password" class="password" placeholder="密码">
+    <input ref="account" type="text" class="account" placeholder="账号">
+    <input ref="password" type="password" class="password" placeholder="密码">
     <button class="login">登录</button>
     <div class="next">
       <div class="register" @click="register">
