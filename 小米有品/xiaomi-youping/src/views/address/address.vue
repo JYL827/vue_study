@@ -11,7 +11,7 @@
       add-button-text="+ 添加地址"
       />
       <!-- 地址列表为空时 -->
-      <v-empty :emptyTip="emptyTip" v-if="addressList.length <= 0"></v-empty>
+      <v-empty :emptyTip="emptyTip" v-show="addressList.length <= 0"></v-empty>
     </div>
   </div>
 </template>

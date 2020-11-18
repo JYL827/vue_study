@@ -35,7 +35,7 @@ export default {
     notLogin() {
       if(!this.hasLogin) {
         this.emptyTip.title = '登录后才能看到商品哦~'
-        this.emptyTip.btnName = '去登录'
+        this.emptyTip.btnName = '立即登录'
         this.emptyTip.url = '/login'
       }
     }

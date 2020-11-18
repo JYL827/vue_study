@@ -1,36 +1,6 @@
 const state = {
-  addressList: [
-    {
-      id: '0',
-      name: '张三',
-      tel: '13000000000',
-      address: '浙江省杭州市西湖区文三路138号东方通信大厦7楼501室',
-      addressDetail: '文三路138号东方通信大厦7楼501室',
-      province: '浙江省',
-      city: '杭州市',
-      county: '西湖区',
-      areaCode: '330106',
-      postCode: '342300',
-      isDefault: true
-    },
-    {
-      id: '1',
-      name: '李四',
-      tel: '13100000000',
-      address: '浙江省杭州市拱墅区莫干山路50号',
-      addressDetail: '拱墅区莫干山路50号',
-      province: '浙江省',
-      city: '杭州市',
-      county: '拱墅区',
-      areaCode: '330105',
-      postCode: '342300',
-      isDefault: false
-    }
-  ],
-  hasLogin: true,
-  userInfo: {
-    nickName: '梦间行'
-  },
+  addressList: [],
+  hasLogin: false,
   hotTitle: [
     '女包',
     '有品',
@@ -42,7 +12,6 @@ const state = {
 const getters = {
   addressList: state => state.addressList,
   hasLogin: state => state.hasLogin,
-  nickName: state => state.userInfo.nickName,
   hotWords: state => state.hotTitle
 }
 
@@ -53,7 +22,7 @@ const mutations = {
   },
   // 保存地址
   saveInfo(state, { addressInfo, index }) {
-    // 由于vant编辑地址组件中只有addressDetail,所以手动拼接address
+    // 把编辑地址组件中的详细地址addressDetail和省市区拼接成最终地址address
     addressInfo.address = addressInfo.province + addressInfo.city + addressInfo.county + addressInfo.addressDetail
     if(index) {
       if(addressInfo.isDefault) {
@@ -66,6 +35,7 @@ const mutations = {
       } else {
         state.addressList[index].isDefault = false
       }
+      state.addressList[index] = addressInfo
     } 
     else if(addressInfo.isDefault) {
       for(let item of state.addressList) {
@@ -77,9 +47,8 @@ const mutations = {
     }
   },
   // 退出登录
-  exitLoginInfo(state) {
-    state.hasLogin = false
-    state.userInfo.nickName = '请登录'
+  changeLoginInfo(state) {
+    state.hasLogin = !state.hasLogin
   }
 }
 
@@ -90,8 +59,8 @@ const actions = {
   saveAddress({ commit }, address) {
     commit('saveInfo', address)
   },
-  exitLogin({ commit }) {
-    commit('exitLoginInfo')
+  changeLogin({ commit }) {
+    commit('changeLoginInfo')
   }
 }
 

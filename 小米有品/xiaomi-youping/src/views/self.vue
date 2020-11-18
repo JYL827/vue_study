@@ -5,7 +5,7 @@
         <div class="head-pic">
           <img src="https://img.youpin.mi-img.com/shopcenter/415b0fd8150f58ee2b85caa2ee9cef8f.png" alt="">
         </div>
-        <div class="head-title">{{nickName}}</div>
+        <div class="head-title">{{nickname}}</div>
         <img class="head-next" src="https://m.xiaomiyoupin.com/youpin/static/m/res/images/icons/icon_arrow_right_darkgray.png" v-if="!hasLogin">
       </div>
       <van-cell title="我的订单" is-link size="large"/>
@@ -33,15 +33,15 @@
       </div>
       <van-cell-group class="cell-group">
         <van-cell icon="paid" title="我的资产" is-link size="large"/>
-        <van-cell icon="star-o" title="我的收藏" is-link size="large" url="./collection"/>
-        <van-cell icon="location-o" title="地址管理" is-link size="large" url="./address"/>
+        <van-cell icon="star-o" title="我的收藏" is-link size="large" :url="this.hasLogin ? './collection' : './login'"/>
+        <van-cell icon="location-o" title="地址管理" is-link size="large" :url="this.hasLogin ? './address' : './login'"/>
       </van-cell-group>
       <van-cell-group class="cell-group">
         <van-cell icon="coupon-o" title="资质证照" is-link size="large"/>
         <van-cell icon="description" title="协议规则" is-link size="large"/>
         <van-cell icon="question-o" title="帮助与反馈" is-link size="large"/>
       </van-cell-group>
-      <button class="exit" v-if="hasLogin" @click="exit">退出</button>
+      <button class="exit" v-show="hasLogin" @click="exit">退出</button>
     </div>
     <v-tabBar></v-tabBar>
   </div>
@@ -56,13 +56,21 @@ import TabBar from '@/components/tabBar.vue'
 Vue.use(Cell);
 Vue.use(CellGroup);
 export default {
+  data() {
+    return {
+      nickname: ''
+    }
+  },
   computed: {
-    ...mapGetters(['hasLogin', 'nickName'])
+    ...mapGetters(['hasLogin'])
   },
   methods: {
-    ...mapActions(['exitLogin']),
+    ...mapActions(['changeLogin']),
     exit() {
-      this.exitLogin()
+      this.changeLogin()
+      sessionStorage.removeItem('userInfo')
+      sessionStorage.removeItem('vuex')
+      this.nickname = '去登录'
       this.$router.push('/')
     },
     toLogin() {
@@ -73,6 +81,15 @@ export default {
   },
   components: {
     'v-tabBar': TabBar
+  },
+  mounted() {
+    let userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+    if(userInfo) {
+      this.nickname = userInfo.nickname
+      if(!this.hasLogin) this.changeLogin()
+    } else {
+      this.nickname = '去登录'
+    }
   }
 }
 </script>

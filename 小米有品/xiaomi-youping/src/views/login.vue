@@ -6,9 +6,9 @@
     <div class="head-title">
       欢迎登录小米有品
     </div>
-    <input ref="account" type="text" class="account" placeholder="账号">
-    <input ref="password" type="password" class="password" placeholder="密码">
-    <button class="login">登录</button>
+    <input type="text" class="username" v-model="username" placeholder="用户名">
+    <input type="password" class="password" v-model="userpwd" placeholder="密码">
+    <button class="login" @click="login">登录</button>
     <div class="next">
       <div class="register" @click="register">
         立即注册
@@ -22,9 +22,45 @@
 
 <script>
 export default {
+  data() {
+    return {
+      username: '',
+      userpwd: ''
+    }
+  },
   methods: {
     register() {
       this.$router.push('/register')
+    },
+    login() {
+      // console.log(this.username);
+      if (this.username.trim() == "" || this.username.trim() == null) {
+        this.$toast("请输入账号");
+        return
+      }
+      if (this.userpwd.trim() == "" || this.userpwd.trim() == null) {
+        this.$toast("请输入密码");
+        return
+      }
+      this.$http({
+        method: 'post',
+        url: this.$util.baseUrl+'/users/userLogin',
+        data: {
+          username: this.username.trim(),
+          userpwd: this.userpwd.trim()
+        }
+      }).then((res) => {
+        if(res.data.code === '80000') {
+          // 拿到后端返回的用户信息(用户名和昵称) 存到本地
+          sessionStorage.setItem('userInfo', JSON.stringify(res.data.data))
+          // 跳转至首页
+          this.$router.push({ path: '/'})
+        } else {
+          this.$toast(res.data.msg)
+        }
+      }).catch((err) => {
+        console.log(err);
+      })
     }
   }
 }
@@ -52,7 +88,7 @@ export default {
       font-size 24px
       padding-top 37%
       margin-bottom 20px
-    .account
+    .username
     .password
       width 250px
       height 35px

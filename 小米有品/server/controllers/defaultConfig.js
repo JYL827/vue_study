@@ -1,6 +1,6 @@
 const config = {
   database: {
-    DATABASE: 'test',
+    DATABASE: 'mi-youping',
     USERNAME: 'root',
     PASSWORD: '',
     PORT: '3306',

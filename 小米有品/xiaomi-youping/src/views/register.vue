@@ -4,25 +4,27 @@
       注册账号
     </div>
     <div class="inputInfo">
-      <van-form @submit="onSubmit">
+      <van-form @submit="register">
         <van-field 
           label-width="50px" 
-          v-model="username" 
-          type="digit" 
-          label="账号" 
-          :rules="[{ pattern, message: '请创建账号' }]"
+          v-model="username"
+          maxlength="10" 
+          label="用户名" 
+          :rules="[{ pattern, message: '用户名只能为数字、字母或下划线' }]"
         />
         <!-- 输入密码 -->
         <van-field 
           label-width="50px" 
-          v-model="password" 
+          v-model="userpwd" 
+          maxlength="20"
           type="password" 
           label="密码" 
           :rules="[{ required: true, message: '请填写密码' }]" 
         />
         <van-field 
           label-width="50px" 
-          v-model="nickname" 
+          v-model="nickname"
+          maxlength="20" 
           label="昵称" 
           :rules="[{ required: true, message: '请填写昵称' }]" 
         />
@@ -43,14 +45,32 @@ export default {
   data() {
     return {
       username: '',
-      password: '',
+      userpwd: '',
       nickname: '',
-      pattern: ''
+      pattern: /^[a-z0-9A-Z_%]+$/
     }
   },
   methods: {
-    onSubmit(values) {
-      console.log('submit', values);
+    register() {
+      this.$http({
+        method: 'post',
+        url: this.$util.baseUrl+'/users/userRegister',
+        data: {
+          username: this.username,
+          userpwd: this.userpwd,
+          nickname: this.nickname
+        }
+      }).then((res) =>{
+        if(res.data.code === '80000') {
+          this.$toast(res.data.msg)
+          this.login()
+        } else {
+          this.$toast(res.data.msg)
+        }
+      })
+    },
+    login() {
+      this.$router.push({ path: '/login'} )
     }
   }
 }
