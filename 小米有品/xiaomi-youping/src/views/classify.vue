@@ -12,8 +12,6 @@
       <div class="side-item">8</div>
       <div class="side-item">9</div>
       <div class="side-item">10</div>
-      <div class="side-item">11</div>
-      <div class="side-item">12</div>
     </div>
     <v-tabBar></v-tabBar>
   </div>
@@ -79,9 +77,8 @@ export default {
   width 93px
   height 572px
   background-color #fff
-  overflow scroll
-  .side-item
-    box-sizing border-box
-    height 50px
-    padding 13px 0
+  display flex
+  flex-direction column
+  justify-content space-around
+  align-items center
 </style>
