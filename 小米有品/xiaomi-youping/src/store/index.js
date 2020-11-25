@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Program from './program'
+import Address from './address'
 import createPersistedState from "vuex-persistedstate"
 
 Vue.use(Vuex)
@@ -16,6 +16,6 @@ export default new Vuex.Store({
     storage:window.sessionStorage
   })],
   modules: {
-    Program
+    Address
   }
 })

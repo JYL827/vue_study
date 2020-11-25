@@ -2,26 +2,22 @@
   <div class="classfy-wrap">
     <van-search v-model="value" :placeholder="searchTitle" shape="round" />
     <div class="side-wrap">
-      <div class="side-item">1</div>
-      <div class="side-item">2</div>
-      <div class="side-item">3</div>
-      <div class="side-item">4</div>
-      <div class="side-item">5</div>
-      <div class="side-item">6</div>
-      <div class="side-item">7</div>
-      <div class="side-item">8</div>
-      <div class="side-item">9</div>
-      <div class="side-item">10</div>
+      <div class="side-item" v-for="(item, index) of titleList" :key="index" @click="goPage(index)">
+        <div class="origin" :class="active===index ? 'selected' : '' ">{{item}}</div>
+      </div>
     </div>
+    <class-list :classData="classData[classIndex]"></class-list>
     <v-tabBar></v-tabBar>
   </div>
 </template>
 
 <script>
 import TabBar from '@/components/tabBar.vue'
+import ClassList from '@/components/classList.vue'
 import Vue from 'vue';
 import { Search } from 'vant';
 import { mapGetters } from 'vuex';
+import ClassData from '@/assets/classList/classDetail.js'
 
 Vue.use(Search);
 export default {
@@ -29,11 +25,16 @@ export default {
     return {
       searchTitle: '',
       value: '',
-      timeId: {}
+      timeId: {},
+      titleList: ['有品推荐', '家用电器', '居家餐厨', '电视影音', '家具家装', '智能家庭', '手机电脑', '数码周边', '日用文创', '服装配饰', '美妆个护'],
+      classData: ClassData,
+      classIndex: 0,
+      active: 0
     }
   },
   components: {
-    'v-tabBar': TabBar
+    'v-tabBar': TabBar,
+    ClassList
   },
   computed: {
     ...mapGetters(['hotWords'])
@@ -50,6 +51,10 @@ export default {
       }, 2000)
       // 在destroyed生命周期中清除定时器
       this.timeId = timeId
+    },
+    goPage(index) {
+      this.active = index
+      this.classIndex = index % this.classData.length 
     }
   },
   mounted() {
@@ -66,19 +71,32 @@ export default {
   width 100vw
   height 45px
   border-bottom 1px solid #f1f1f1
-  position absolute
+  position fixed
   top 0
+  z-index 999
 .classfy-wrap
-  height 100vh
   background-color #f1f1f1
-.side-wrap
-  padding-top 45px
-  padding-bottom 50px
-  width 93px
-  height 572px
-  background-color #fff
-  display flex
-  flex-direction column
-  justify-content space-around
-  align-items center
+  .side-wrap
+    position fixed
+    left 0
+    width 93px
+    height 572px
+    background-color #fff
+    display flex
+    flex-direction column
+    justify-content space-around
+    align-items center
+    .side-item
+      width 74.5px
+      padding 13px 0
+      font-size 13px
+      color #666666
+      text-align center
+      .origin
+        width 74px
+        line-height 24px
+      .selected
+        background-color rgb(241, 83, 56)
+        color #fff
+        border-radius 12px
 </style>

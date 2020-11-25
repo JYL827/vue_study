@@ -34,7 +34,7 @@
       <van-cell-group class="cell-group">
         <van-cell icon="paid" title="我的资产" is-link size="large"/>
         <van-cell icon="star-o" title="我的收藏" is-link size="large" :url="this.hasLogin ? './collection' : './login'"/>
-        <van-cell icon="location-o" title="地址管理" is-link size="large" :url="this.hasLogin ? './address' : './login'"/>
+        <van-cell icon="location-o" title="地址管理" is-link size="large" :url="this.hasLogin ? './addressList' : './login'"/>
       </van-cell-group>
       <van-cell-group class="cell-group">
         <van-cell icon="coupon-o" title="资质证照" is-link size="large"/>

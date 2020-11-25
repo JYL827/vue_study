@@ -4,8 +4,8 @@ import Home from '@/views/home.vue'
 import Classify from '@/views/classify.vue'
 import Self from '@/views/self.vue'
 import Cart from '@/views/cart.vue'
-import Address from '@/views/address/address.vue'
-import AddressEdit from '@/views/address/address-edit.vue'
+import AddressList from '@/views/address/addressList.vue'
+import AddressEdit from '@/views/address/addressEdit.vue'
 import Collection from '@/views/collection.vue'
 import Login from '@/views/login.vue'
 import Register from '@/views/register.vue'
@@ -29,9 +29,9 @@ const routes = [
     component: Self
   },
   {
-    path: '/address',
-    name: 'address',
-    component: Address
+    path: '/addressList',
+    name: 'addressList',
+    component: AddressList
   },
   {
     path: '/addressEdit',
