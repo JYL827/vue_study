@@ -61,6 +61,8 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.tabBar
+  text-align center
   .van-tabbar-item
     border-top 2px solid #f1f1f1
     padding-bottom 5px

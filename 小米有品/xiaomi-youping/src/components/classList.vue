@@ -37,18 +37,22 @@ export default {
       margin-top 10px
       border-radius 10px
       font-size 12px
+      overflow: hidden;
       color #666666
       .block-title
         height 17.6px
         font-size 13px
         font-weight bold
         color #333333
-        padding 10px 0 0 10px
+        margin 10px 0 0 10px
       .class-list
         display flex
         flex-wrap wrap
         justify-content space-around
         align-content space-between
+        &::after
+          content ''
+          width 30%
         .class-detail
           position relative
           width 76px
